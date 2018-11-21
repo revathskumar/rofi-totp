@@ -40,14 +40,21 @@ fn main() {
     final_otps.push(vec![label, &otp.to_string()].join(" :: "))
   }
 
+  let xdotool = Command::new("xdotool")
+    .arg("getactivewindow")
+    .output()
+    .unwrap();
+
+  let window_id = String::from_utf8_lossy(&xdotool.stdout);
+
   let mut rofi = Command::new("rofi")
-        .arg("-dmenu")
-        .arg("-p")
-        .arg("2fa")
-        .stdin(Stdio::piped())
-        .stdout(Stdio::piped())
-        .spawn()
-        .expect("Failed to execute rofi command");
+    .arg("-dmenu")
+    .arg("-p")
+    .arg("2fa")
+    .stdin(Stdio::piped())
+    .stdout(Stdio::piped())
+    .spawn()
+    .expect("Failed to execute rofi command");
 
   {
     let stdin = rofi.stdin.as_mut().expect("Failed to open stdin");
@@ -59,9 +66,25 @@ fn main() {
   
   if rofi_status.status.success() {
     let selected_option = String::from_utf8_lossy(&rofi_status.stdout);
+    let option_parts: Vec<&str>  = selected_option.split(" :: ").collect();
 
-    println!("stdout :: {:#?}",  selected_option.trim());
-    println!("status :: {:#?}", rofi_status.status.success())
+    let otp = option_parts[1];
 
+    let mut _sleep = Command::new("sleep")
+      .arg("0.5")
+      .output()
+      .unwrap();
+
+    let mut _xdo = Command::new("xdotool")
+      .arg("windowactivate")
+      .arg(window_id.to_string())
+      .output()
+      .unwrap();
+
+    let mut _type = Command::new("xdotool")
+      .arg("type")
+      .arg(otp)
+      .output()
+      .unwrap();
   }
 }
