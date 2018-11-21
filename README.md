@@ -26,6 +26,10 @@ apps:
     secret: NUYJ2UDBUNZIQGDG
 ```
 
+### Installation
+
+Download executable from [releases](https://github.com/revathskumar/rofi-totp/releases/latest) and keep it in you `$PATH`
+
 
 License
 -------
