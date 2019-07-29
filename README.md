@@ -1,8 +1,6 @@
-rofi-totp
-======================
+# rofi-totp
 
-    A rofi plugin for Two-Factors Authentication / Time-Based Authentication Token / TOTP /  Google Authenticator 
-
+    A rofi plugin for Two-Factors Authentication / Time-Based Authentication Token / TOTP /  Google Authenticator
 
 ### Dependencies
 
@@ -30,7 +28,12 @@ apps:
 
 Download executable from [releases](https://github.com/revathskumar/rofi-totp/releases/latest) and keep it in you `$PATH`
 
+### Development
 
-License
--------
+```sh
+RUST_BACKTRACE=1 cargo run
+```
+
+## License
+
 Please see [License](https://github.com/revathskumar/rofi-totp/blob/master/License)
