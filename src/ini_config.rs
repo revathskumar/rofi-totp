@@ -13,21 +13,16 @@ pub fn get_list() -> Result<Vec<std::string::String>, &'static str> {
     }
   };
 
-  print!("Plist path :: {:?}", ini_config_path);
-
   let conf = match Ini::load_from_file(ini_config_path) {
     Ok(c) => c,
-    Err(why) => {
+    Err(_) => {
       return Err("Make sure you have .gauth config file in home folder");
     }
   };
 
   for (label, prop) in &conf {
-    println!("Section: {:?}", label);
-    for (key, secret) in prop {
-      println!("{:?}:{:?}", key, secret);
+    for (_, secret) in prop {
       let otp = totp::generate(secret).unwrap();
-      println!("otp :: {:?}", otp);
       final_otps.push(vec![String::from(label.as_ref().unwrap()), String::from(&otp.to_string())].join(" :: "))
     }
   }
