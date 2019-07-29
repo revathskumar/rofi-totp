@@ -4,12 +4,11 @@ extern crate dirs;
 
 use std::fs::File;
 use std::error::Error;
-use std::io::{Read, Write};
-use std::process::{Command, Stdio};
 use yaml_rust::{YamlLoader};
 
 mod totp;
 mod ini_config;
+mod rofi;
 
 fn main() {
   let mut is_error = false;
@@ -27,26 +26,10 @@ fn main() {
 
   if is_error {
 
-
     println!("in is_error :: {:?} :: {}", error_message, is_error);
       
-
-    let mut rofi = Command::new("rofi")
-      .arg("-dmenu")
-      .arg("-p")
-      .arg("2fa")
-      .stdin(Stdio::piped())
-      .stdout(Stdio::piped())
-      .spawn()
-      .expect("Failed to execute rofi command");
-
-      {
-        let stdin = rofi.stdin.as_mut().expect("Failed to open stdin");
-        stdin.write_all(error_message.as_bytes()).unwrap();
-      }
-
-    // let rofi_status = rofi.wait_with_output().unwrap();
-    // return panic!(error_message);
+    let rf = rofi::create();
+    return rofi::set_content(rf, error_message);
   }
 
   // let config_path = match dirs::home_dir() {
