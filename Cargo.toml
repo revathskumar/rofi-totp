@@ -2,6 +2,18 @@
 name = "rofi-totp"
 version = "0.1.0"
 authors = ["Revath S Kumar <rsk@revathskumar.com>"]
+documentation = "https://github.com/revathskumar/rofi-totp"
+homepage = "https://github.com/revathskumar/rofi-totp"
+repository = "https://github.com/revathskumar/rofi-totp"
+readme = "README.md"
+keywords = ["totp", "alfred", "rofi", "gauth"]
+license = "MIT"
+
+[[bin]]
+name = "rofi-totp"
+test = false
+bench = false
+doctest = false
 
 [dependencies]
 yaml-rust = "0.4.2"

@@ -48,7 +48,16 @@ Download executable from [releases](https://github.com/revathskumar/rofi-totp/re
 ### Development
 
 ```sh
+git clone https://github.com/revathskumar/rofi-totp
+cd rofi-totp/
+cargo install
 RUST_BACKTRACE=1 cargo run
+```
+
+### Release
+
+```sh
+cargo build --release
 ```
 
 ## License
