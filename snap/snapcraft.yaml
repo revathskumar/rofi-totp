@@ -18,10 +18,7 @@ parts:
     stage-packages:
       - rofi
       - xdotool
-      - gtk-3-examples
-    after: [desktop-gtk3]
-
-parts:
+    after: [desktop-gnome-platform]
   desktop-gnome-platform:
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
     source-depth: 1
@@ -34,6 +31,9 @@ parts:
     override-build: |
       snapcraftctl build
       mkdir -pv $SNAPCRAFT_PART_INSTALL/gnome-platform
+
+
+  
 
 plugs:
   gnome-3-28-1804:
@@ -53,6 +53,7 @@ apps:
       - desktop-legacy
       - wayland
       - unity7
+      - home
       - totp-files
       - gnome-3-28-1804
-    command: bin/desktop-launch bin/rofi-totp
+    command: desktop-launch rofi-totp
