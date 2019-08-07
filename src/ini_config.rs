@@ -2,14 +2,14 @@ use ini::Ini;
 use totp;
 use dir;
 
-pub fn get_list() -> Result<Vec<std::string::String>, &'static str> {
+pub fn get_list() -> Result<Vec<std::string::String>, String> {
 
   let mut final_otps : Vec<std::string::String> = Vec::new();
 
   let home_dir = match dir::home() {
     Some(home) => home,
     None => {
-      return Err("Can't find the HOME directory");
+      return Err(String::from("Can't find the HOME directory"));
     }
   };
 
@@ -18,7 +18,7 @@ pub fn get_list() -> Result<Vec<std::string::String>, &'static str> {
   let conf = match Ini::load_from_file(ini_config_path) {
     Ok(c) => c,
     Err(_) => {
-      return Err("Make sure you have .gauth config file in home folder");
+      return Err(String::from("Make sure you have .gauth config file in home folder"));
     }
   };
 

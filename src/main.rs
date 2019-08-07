@@ -11,7 +11,7 @@ mod dir;
 
 fn main() {
   let mut is_error = false;
-  let mut error_message = "";
+  let mut error_message = String::new();
 
   let mut final_otps = match ini_config::get_list() {
     Ok(c) => c,
@@ -26,7 +26,7 @@ fn main() {
     final_otps = match yaml_config::get_list() {
     Ok(c) => {
       is_error = false;
-      error_message = "";  
+      error_message = String::new();
       c
     },
     Err(why) => {
@@ -39,7 +39,7 @@ fn main() {
 
   if is_error {
     let rf = rofi::create();
-    rofi::set_content(rf, error_message);
+    rofi::set_content(rf, &error_message.to_string());
     return
   }
 
@@ -54,7 +54,7 @@ fn main() {
   rf = rofi::set_content(rf, &final_otps.join("\n"));
 
   let rofi_status = rf.wait_with_output().unwrap();
-  
+
   if rofi_status.status.success() {
     let selected_option = String::from_utf8_lossy(&rofi_status.stdout);
     let option_parts: Vec<&str>  = selected_option.split(" :: ").collect();
@@ -77,5 +77,5 @@ fn main() {
       .arg(otp)
       .output()
       .unwrap();
-  }  
+  }
 }

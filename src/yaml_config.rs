@@ -5,14 +5,14 @@ use yaml_rust::{YamlLoader};
 use totp;
 use dir;
 
-pub fn get_list() -> Result<Vec<std::string::String>, &'static str> {
+pub fn get_list() -> Result<Vec<std::string::String>, String> {
 
   let mut final_otps : Vec<std::string::String> = Vec::new();
   
   let home_dir = match dir::home() {
     Some(home) => home,
     None => {
-      return Err("Can't find the HOME directory");
+      return Err(String::from("Can't find the HOME directory"));
     }
   };
 
@@ -20,7 +20,7 @@ pub fn get_list() -> Result<Vec<std::string::String>, &'static str> {
 
   let mut config_file = match File::open(&config_path) {
     Err(_) => {
-      return Err("Make sure you have .gauth (ini format) or 2fa.yml config file in home folder");
+      return Err(String::from("Make sure you have .gauth (ini) or 2fa.yml config file in home folder"));
     }
     Ok(file) => file,
   };
@@ -28,7 +28,7 @@ pub fn get_list() -> Result<Vec<std::string::String>, &'static str> {
   let mut s = String::new();
   let content = match config_file.read_to_string(&mut s) {
     Err(_) => {
-      return Err("Make sure you have .gauth (ini format) or 2fa.yml config file in home folder");
+      return Err(String::from("Make sure your config file is readable"));
     }Ok(_) => s,
   };
 
