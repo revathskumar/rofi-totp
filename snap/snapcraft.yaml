@@ -21,17 +21,14 @@ parts:
     after: [desktop-gnome-platform]
   desktop-gnome-platform:
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
-    source-depth: 1
     source-subdir: gtk
-
     plugin: make
+    make-parameters: ["FLAVOR=gtk3"]
     build-packages:
-    - build-essential
-    - libgtk-3-dev
+      - gcc
     override-build: |
       snapcraftctl build
       mkdir -pv $SNAPCRAFT_PART_INSTALL/gnome-platform
-
 
   
 
