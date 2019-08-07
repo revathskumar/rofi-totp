@@ -7,6 +7,7 @@ mod totp;
 mod ini_config;
 mod yaml_config;
 mod rofi;
+mod dir;
 
 fn main() {
   let mut is_error = false;

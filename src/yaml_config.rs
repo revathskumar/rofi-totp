@@ -3,17 +3,20 @@ use std::io::{Read};
 use yaml_rust::{YamlLoader};
 
 use totp;
+use dir;
 
 pub fn get_list() -> Result<Vec<std::string::String>, &'static str> {
 
   let mut final_otps : Vec<std::string::String> = Vec::new();
   
-  let config_path = match dirs::home_dir() {
-    Some(x) => x.join("2fa.yml"),
+  let home_dir = match dir::home() {
+    Some(home) => home,
     None => {
       return Err("Can't find the HOME directory");
     }
   };
+
+  let config_path = home_dir.join("2fa.yml");
 
   let mut config_file = match File::open(&config_path) {
     Err(_) => {
