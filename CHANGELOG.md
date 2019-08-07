@@ -6,3 +6,7 @@
 
 - Support for ini config in sync with [alfred-workflow-gauth](https://github.com/moul/alfred-workflow-gauth)
 - Show error message in rofi UI if config file is missing
+
+## 0.3.0
+
+- removes `dirs` crate and use `$USER` to get `HOME` directory 

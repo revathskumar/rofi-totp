@@ -1,6 +1,6 @@
 [package]
 name = "rofi-totp"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Revath S Kumar <rsk@revathskumar.com>"]
 documentation = "https://github.com/revathskumar/rofi-totp"
 homepage = "https://github.com/revathskumar/rofi-totp"
