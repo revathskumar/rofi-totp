@@ -1,6 +1,5 @@
 extern crate yaml_rust;
 extern crate ini;
-extern crate dirs;
 
 use std::process::{Command};
 
