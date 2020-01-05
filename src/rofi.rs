@@ -6,6 +6,7 @@ pub fn create() -> std::process::Child {
     .arg("-dmenu")
     .arg("-p")
     .arg("2fa")
+    .arg("-i")
     .stdin(Stdio::piped())
     .stdout(Stdio::piped())
     .spawn()

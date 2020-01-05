@@ -45,6 +45,8 @@ apps:
 
 Download executable from [releases](https://github.com/revathskumar/rofi-totp/releases/latest) and keep it in you `$PATH`
 
+By default search will be case insensitive from version `0.3.1`. To toggle, case sensitivity use `grave` key. Normally (`).
+
 ### Development
 
 ```sh
