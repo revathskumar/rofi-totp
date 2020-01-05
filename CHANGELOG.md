@@ -14,3 +14,7 @@
 ## 0.3.1
 
 - default will be case insensitive search. Use `grave` key to toggle.
+
+## 0.3.2
+
+- Fixes #1: fix showing only 5 chars when OTP starts with 0.
