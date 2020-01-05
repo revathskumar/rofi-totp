@@ -9,4 +9,8 @@
 
 ## 0.3.0
 
-- removes `dirs` crate and use `$USER` to get `HOME` directory 
+- removes `dirs` crate and use `$USER` to get `HOME` directory
+
+## 0.3.1
+
+- default will be case insensitive search. Use `grave` key to toggle.
