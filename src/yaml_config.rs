@@ -16,11 +16,11 @@ pub fn get_list() -> Result<Vec<std::string::String>, String> {
     }
   };
 
-  let config_path = home_dir.join("2fa.yml");
+  let config_path = home_dir.join(".config").join("rofi-totp").join("2fa.yml");
 
   let mut config_file = match File::open(&config_path) {
     Err(_) => {
-      return Err(String::from("Make sure you have .gauth (ini) or 2fa.yml config file in home folder"));
+      return Err(String::from("Make sure you have created the following config file ~/.config/rofi-totp/2fa.yml"));
     }
     Ok(file) => file,
   };
