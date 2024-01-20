@@ -29,7 +29,7 @@ secret=yyyyyyyyyyyyyyyyyy
 
 #### YAML config
 
-Create file named `2fa.yml` in your home directory and add apps in the format
+Create file named `2fa.yml` in `~/.config/rofi-totp` and add apps in the format
 
 ```yml
 apps:
